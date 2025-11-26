@@ -78,4 +78,19 @@ public class AccountDatabase {
             throw new RuntimeException(e);
         }
     }
+
+    //Kiểm tra đăng nhập
+    public boolean checkLogin(String username, String password){
+        Account a = accountDB.findAccountByUsername(username);
+        if (a == null){
+            System.out.println("Sai tên đăng nhập!");
+            return false;
+        }
+        String savedPassword = a.getPassword();
+        if (!password.equals(savedPassword)){
+            System.out.println("Sai mật khẩu!");
+            return false;
+        }
+        return true;
+    }
 }
